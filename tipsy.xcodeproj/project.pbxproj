@@ -14,6 +14,7 @@
 		FC4EEBBC1E4EBAF70037B2B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC4EEBBA1E4EBAF70037B2B6 /* LaunchScreen.storyboard */; };
 		FC4EEBC71E4EBAF70037B2B6 /* tipsyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4EEBC61E4EBAF70037B2B6 /* tipsyTests.swift */; };
 		FC4EEBD21E4EBAF70037B2B6 /* tipsyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4EEBD11E4EBAF70037B2B6 /* tipsyUITests.swift */; };
+		FC56F16B1E63A0920047C3FA /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC56F16A1E63A0920047C3FA /* SettingsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		FC4EEBCD1E4EBAF70037B2B6 /* tipsyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tipsyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC4EEBD11E4EBAF70037B2B6 /* tipsyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tipsyUITests.swift; sourceTree = "<group>"; };
 		FC4EEBD31E4EBAF70037B2B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FC56F16A1E63A0920047C3FA /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 				FC4EEBB11E4EBAF70037B2B6 /* AppDelegate.swift */,
 				FC4EEBB31E4EBAF70037B2B6 /* ViewController.swift */,
 				FC4EEBB51E4EBAF70037B2B6 /* Main.storyboard */,
+				FC56F16A1E63A0920047C3FA /* SettingsTableViewController.swift */,
 				FC4EEBB81E4EBAF70037B2B6 /* Assets.xcassets */,
 				FC4EEBBA1E4EBAF70037B2B6 /* LaunchScreen.storyboard */,
 				FC4EEBBD1E4EBAF70037B2B6 /* Info.plist */,
@@ -261,6 +264,7 @@
 			files = (
 				FC4EEBB41E4EBAF70037B2B6 /* ViewController.swift in Sources */,
 				FC4EEBB21E4EBAF70037B2B6 /* AppDelegate.swift in Sources */,
+				FC56F16B1E63A0920047C3FA /* SettingsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
