@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "tipsy/ViewController.swift"
-            timestampString = "509842835.263078"
+            timestampString = "509855777.971227"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
             landmarkName = "setupSegmentedControl()"
             landmarkType = "7">
          </BreakpointContent>
@@ -103,11 +103,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "tipsy/SettingsTableViewController.swift"
-            timestampString = "509848640.570749"
+            timestampString = "509855634.790409"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -119,13 +119,45 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "tipsy/SettingsTableViewController.swift"
-            timestampString = "509848640.570749"
+            timestampString = "509855634.790409"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
             landmarkName = "SettingsTableViewController"
             landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "tipsy/SettingsTableViewController.swift"
+            timestampString = "509855634.790409"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
+            landmarkName = "pickerView(_:didSelectRow:inComponent:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "tipsy/ViewController.swift"
+            timestampString = "509855777.971227"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "setupSegmentedControl()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

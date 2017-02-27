@@ -15,15 +15,19 @@ class ViewController: UIViewController {
     @IBOutlet weak var tipLabel: UILabel!
     @IBOutlet weak var tipControl: UISegmentedControl!
     var tipPercentages: [Double] = []
-    static let DEFAULT_ONE_KEY = "default_percentage_one"
-    static let DEFAULT_TWO_KEY = "default_percentage_two"
-    static let DEFAULT_THREE_KEY = "default_percentage_three"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Retrieve segmented control values from user settings.
         setupSegmentedControl()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if (self.isMovingToParentViewController == false) {
+            setupSegmentedControl()
+            refreshTip()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,14 +37,20 @@ class ViewController: UIViewController {
 
     func setupSegmentedControl() {
         let defaults = UserDefaults.standard
+        tipPercentages.removeAll()
         
         // Gets the user tip percentages, or uses default values if they do not exist.
-        tipPercentages.append(defaults.object(forKey: ViewController.DEFAULT_ONE_KEY) != nil ?
-            defaults.object(forKey: ViewController.DEFAULT_ONE_KEY)! as! Double : 0.18)
-        tipPercentages.append(defaults.object(forKey: ViewController.DEFAULT_TWO_KEY) != nil ?
-            defaults.object(forKey: ViewController.DEFAULT_TWO_KEY)! as! Double : 0.2)
-        tipPercentages.append(defaults.object(forKey: ViewController.DEFAULT_THREE_KEY) != nil ?
-            defaults.object(forKey: ViewController.DEFAULT_THREE_KEY)! as! Double : 0.25)
+        tipPercentages.append(defaults.object(forKey: SettingsTableViewController.DEFAULT_ONE_KEY) != nil ?
+            defaults.object(forKey: SettingsTableViewController.DEFAULT_ONE_KEY)! as! Double : 0.18)
+        tipPercentages.append(defaults.object(forKey: SettingsTableViewController.DEFAULT_TWO_KEY) != nil ?
+            defaults.object(forKey: SettingsTableViewController.DEFAULT_TWO_KEY)! as! Double : 0.2)
+        tipPercentages.append(defaults.object(forKey: SettingsTableViewController.DEFAULT_THREE_KEY) != nil ?
+            defaults.object(forKey: SettingsTableViewController.DEFAULT_THREE_KEY)! as! Double : 0.25)
+        
+        self.tipControl.setTitle(String(format: "%d%%", Int(tipPercentages[0] * 100)), forSegmentAt: 0)
+        self.tipControl.setTitle(String(format: "%d%%", Int(tipPercentages[1] * 100)), forSegmentAt: 1)
+        self.tipControl.setTitle(String(format: "%d%%", Int(tipPercentages[2] * 100)), forSegmentAt: 2)
+        print(tipPercentages)
     }
     
     @IBAction func onTap(_ sender: AnyObject) {
@@ -48,6 +58,10 @@ class ViewController: UIViewController {
     }
 
     @IBAction func calculateTip(_ sender: AnyObject) {
+        refreshTip()
+    }
+    
+    func refreshTip() {
         let bill = Double(billField.text!) ?? 0
         let tip = bill * tipPercentages[tipControl.selectedSegmentIndex]
         let total = bill + tip
