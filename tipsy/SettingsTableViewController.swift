@@ -12,8 +12,19 @@ class SettingsTableViewController: UITableViewController, UIPickerViewDataSource
 
     @IBOutlet weak var tipPercentagePicker: UIPickerView!
     @IBOutlet weak var tipSelectView: UIView!
-    var userTipPercentages: [Int] = []
-    var savedUserTipValues: [Double] = []
+    private let uipickerId = 0
+    private let userSettings = UserDefaults.standard
+    private let tableRowToDefaultKey = [0: SettingsTableViewController.DEFAULT_ONE_KEY,
+                                        1: SettingsTableViewController.DEFAULT_TWO_KEY,
+                                        2: SettingsTableViewController.DEFAULT_THREE_KEY]
+    private var userTipPercentageOptions: [Int] = []
+//    private var savedUserTipValues: [Double] = []
+    private var tipPercentageDefaults = [SettingsTableViewController.DEFAULT_ONE_KEY: 0.18,
+                                         SettingsTableViewController.DEFAULT_TWO_KEY: 0.2,
+                                         SettingsTableViewController.DEFAULT_THREE_KEY: 0.25]
+
+    
+    // UserDefaults keys to store default percentages
     static let DEFAULT_ONE_KEY = "default_percentage_one"
     static let DEFAULT_TWO_KEY = "default_percentage_two"
     static let DEFAULT_THREE_KEY = "default_percentage_three"
@@ -25,17 +36,7 @@ class SettingsTableViewController: UITableViewController, UIPickerViewDataSource
         loadSavedUserTipPercentages()
         
         // Setup the uiPicker
-        setupTipPercentages()
-        tipSelectView.viewWithTag(0)?.isHidden = true
-        tipPercentagePicker.dataSource = self
-        tipPercentagePicker.delegate = self
-        
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        setupUiPicker()
     }
 
     override func didReceiveMemoryWarning() {
@@ -43,28 +44,27 @@ class SettingsTableViewController: UITableViewController, UIPickerViewDataSource
         // Dispose of any resources that can be recreated.
     }
     
+    func setupUiPicker() {
+        setupTipPercentages()
+        tipSelectView.viewWithTag(uipickerId)?.isHidden = true
+        tipPercentagePicker.dataSource = self
+        tipPercentagePicker.delegate = self
+    }
+    
     func setupTipPercentages() {
         for percentage in 1...100 {
-            userTipPercentages.append(percentage)
+            userTipPercentageOptions.append(percentage)
         }
     }
     
     func loadSavedUserTipPercentages() {
-        let defaults = UserDefaults.standard
-        savedUserTipValues.removeAll()
-        if defaults.object(forKey: SettingsTableViewController.DEFAULT_ONE_KEY) == nil {
-            defaults.set(0.18, forKey: SettingsTableViewController.DEFAULT_ONE_KEY)
+        for (key, _) in tipPercentageDefaults {
+            if userSettings.object(forKey: key) == nil {
+                userSettings.set(tipPercentageDefaults[key], forKey: key)
+            } else {
+                tipPercentageDefaults[key] = userSettings.double(forKey: key)
+            }
         }
-        if defaults.object(forKey: SettingsTableViewController.DEFAULT_TWO_KEY) == nil {
-            defaults.set(0.2, forKey: SettingsTableViewController.DEFAULT_TWO_KEY)
-        }
-        if defaults.object(forKey: SettingsTableViewController.DEFAULT_THREE_KEY) == nil {
-            defaults.set(0.25, forKey: SettingsTableViewController.DEFAULT_THREE_KEY)
-        }
-        defaults.synchronize()
-        savedUserTipValues.append(defaults.double(forKey: SettingsTableViewController.DEFAULT_ONE_KEY))
-        savedUserTipValues.append(defaults.double(forKey: SettingsTableViewController.DEFAULT_TWO_KEY))
-        savedUserTipValues.append(defaults.double(forKey: SettingsTableViewController.DEFAULT_THREE_KEY))
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -78,21 +78,10 @@ class SettingsTableViewController: UITableViewController, UIPickerViewDataSource
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 0 && indexPath.row == 0 {
-            tipSelectView.viewWithTag(0)?.isHidden = false
-//            tableView.deselectRow(at: indexPath, animated: true)
-            let currentDefaultPercentage = Int(savedUserTipValues[0] * 100) - 1
-            tipPercentagePicker.selectRow(currentDefaultPercentage, inComponent: 0, animated: true)
-        } else if indexPath.section == 0 && indexPath.row == 1 {
-            tipSelectView.viewWithTag(0)?.isHidden = false
-//            tableView.deselectRow(at: indexPath, animated: true)
-            let currentDefaultPercentage = Int(savedUserTipValues[1] * 100) - 1
-            tipPercentagePicker.selectRow(currentDefaultPercentage, inComponent: 0, animated: true)
-        } else if indexPath.section == 0 && indexPath.row == 2 {
-            tipSelectView.viewWithTag(0)?.isHidden = false
-//            tableView.deselectRow(at: indexPath, animated: true)
-            let currentDefaultPercentage = Int(savedUserTipValues[2] * 100) - 1
-            tipPercentagePicker.selectRow(currentDefaultPercentage, inComponent: 0, animated: true)
+        if indexPath.section == 0 {
+            tipSelectView.viewWithTag(uipickerId)?.isHidden = false
+            let currentDefaultPercentage = Int(tipPercentageDefaults[tableRowToDefaultKey[indexPath.row]!]! * 100) - 1
+            tipPercentagePicker.selectRow(currentDefaultPercentage, inComponent: indexPath.section, animated: true)
         }
     }
     
@@ -101,26 +90,25 @@ class SettingsTableViewController: UITableViewController, UIPickerViewDataSource
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return userTipPercentages.count
+        return userTipPercentageOptions.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return String(format: "%d%%", userTipPercentages[row])
+        return String(format: "%d%%", userTipPercentageOptions[row])
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        // This code has the percentage change event
         let indexPath = tableView.indexPathForSelectedRow![1]
-        savedUserTipValues[indexPath] = Double(userTipPercentages[row]) / 100.00
+        tipPercentageDefaults[tableRowToDefaultKey[indexPath]!] = Double(userTipPercentageOptions[row]) / 100.00
         syncUserDefaultValues()
     }
     
     func syncUserDefaultValues() {
-        let defaults = UserDefaults.standard
-        defaults.set(savedUserTipValues[0], forKey: SettingsTableViewController.DEFAULT_ONE_KEY)
-        defaults.set(savedUserTipValues[1], forKey: SettingsTableViewController.DEFAULT_TWO_KEY)
-        defaults.set(savedUserTipValues[2], forKey: SettingsTableViewController.DEFAULT_THREE_KEY)
-        defaults.synchronize()
+        for (key, value) in tipPercentageDefaults {
+            userSettings.set(value, forKey: key)
+        }
+        userSettings.synchronize()
     }
 
 }
+//            tableView.deselectRow(at: indexPath, animated: true)
