@@ -18,13 +18,10 @@ class SettingsTableViewController: UITableViewController, UIPickerViewDataSource
                                         1: SettingsTableViewController.DEFAULT_TWO_KEY,
                                         2: SettingsTableViewController.DEFAULT_THREE_KEY]
     private var userTipPercentageOptions: [Int] = []
-//    private var savedUserTipValues: [Double] = []
+    private var lastSelectedTableRow: IndexPath? = nil
     private var tipPercentageDefaults = [SettingsTableViewController.DEFAULT_ONE_KEY: 0.18,
                                          SettingsTableViewController.DEFAULT_TWO_KEY: 0.2,
                                          SettingsTableViewController.DEFAULT_THREE_KEY: 0.25]
-
-    
-    // UserDefaults keys to store default percentages
     static let DEFAULT_ONE_KEY = "default_percentage_one"
     static let DEFAULT_TWO_KEY = "default_percentage_two"
     static let DEFAULT_THREE_KEY = "default_percentage_three"
@@ -79,9 +76,15 @@ class SettingsTableViewController: UITableViewController, UIPickerViewDataSource
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
-            tipSelectView.viewWithTag(uipickerId)?.isHidden = false
-            let currentDefaultPercentage = Int(tipPercentageDefaults[tableRowToDefaultKey[indexPath.row]!]! * 100) - 1
-            tipPercentagePicker.selectRow(currentDefaultPercentage, inComponent: indexPath.section, animated: true)
+            if !((tipSelectView.viewWithTag(uipickerId)?.isHidden)!) && lastSelectedTableRow! == indexPath {
+                tipSelectView.viewWithTag(uipickerId)?.isHidden = true
+                tableView.deselectRow(at: indexPath, animated: true)
+            } else {
+                tipSelectView.viewWithTag(uipickerId)?.isHidden = false
+                let currentDefaultPercentage = Int(tipPercentageDefaults[tableRowToDefaultKey[indexPath.row]!]! * 100) - 1
+                tipPercentagePicker.selectRow(currentDefaultPercentage, inComponent: indexPath.section, animated: true)
+                lastSelectedTableRow = indexPath
+            }
         }
     }
     
@@ -109,6 +112,5 @@ class SettingsTableViewController: UITableViewController, UIPickerViewDataSource
         }
         userSettings.synchronize()
     }
-
+    
 }
-//            tableView.deselectRow(at: indexPath, animated: true)
