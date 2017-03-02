@@ -1,0 +1,1 @@
+# Tipsy tip calculator application
