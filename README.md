@@ -9,4 +9,4 @@ This is a tip calculator application.
 * Format tip and total fields with thousand comma seperator
 * Input is first responder with keyboard visible
 
-![Demo](http://i.imgur.com/YS81aSp.gif)
+![Demo](http://i.imgur.com/noJy9v9.gif)
