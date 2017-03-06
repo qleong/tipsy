@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var billField: UITextField!
     @IBOutlet weak var totalLabel: UILabel!
@@ -26,9 +26,15 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Set input as first responder
+        billField.delegate = self
+        billField.becomeFirstResponder()
+        
+        // Setup number formatter format style
+        numberFormatter.numberStyle = NumberFormatter.Style.decimal
+
         // Retrieve segmented control values from user settings.
         setupSegmentedControl()
-        setupNumberFormatter()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,7 +50,7 @@ class ViewController: UIViewController {
     }
 
     func setupNumberFormatter() {
-        numberFormatter.numberStyle = NumberFormatter.Style.decimal
+        
     }
 
     func setupSegmentedControl() {
