@@ -12,6 +12,7 @@ class SettingsTableViewController: UITableViewController, UIPickerViewDataSource
 
     @IBOutlet weak var tipPercentagePicker: UIPickerView!
     @IBOutlet weak var tipSelectView: UIView!
+    @IBOutlet var settingsTableView: UITableView!
     private let uipickerId = 0
     private let userSettings = UserDefaults.standard
     private let tableRowToDefaultKey = [0: SettingsTableViewController.DEFAULT_ONE_KEY,
@@ -22,18 +23,27 @@ class SettingsTableViewController: UITableViewController, UIPickerViewDataSource
     private var tipPercentageDefaults = [SettingsTableViewController.DEFAULT_ONE_KEY: 0.18,
                                          SettingsTableViewController.DEFAULT_TWO_KEY: 0.2,
                                          SettingsTableViewController.DEFAULT_THREE_KEY: 0.25]
+    private var themeSetting = SettingsTableViewController.APP_THEME_ORIGINAL
     static let DEFAULT_ONE_KEY = "default_percentage_one"
     static let DEFAULT_TWO_KEY = "default_percentage_two"
     static let DEFAULT_THREE_KEY = "default_percentage_three"
+    static let APP_THEME_KEY = "application_theme"
+    static let APP_THEME_ORIGINAL = "original_app_theme"
+    static let APP_THEME_DARK = "dark_app_theme"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Get UserSettings
         loadSavedUserTipPercentages()
+        loadThemeSettings()
         
         // Setup the uiPicker
         setupUiPicker()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        checkThemeCell()
     }
 
     override func didReceiveMemoryWarning() {
@@ -63,29 +73,69 @@ class SettingsTableViewController: UITableViewController, UIPickerViewDataSource
             }
         }
     }
+    
+    func loadThemeSettings() {
+        if userSettings.object(forKey: SettingsTableViewController.APP_THEME_KEY) == nil {
+            themeSetting = SettingsTableViewController.APP_THEME_ORIGINAL
+            userSettings.set(SettingsTableViewController.APP_THEME_ORIGINAL, forKey: SettingsTableViewController.APP_THEME_KEY)
+        } else {
+            themeSetting = userSettings.string(forKey:SettingsTableViewController.APP_THEME_KEY)!
+        }
+    }
+    
+    func checkThemeCell() {
+        // This function should only be called when the viewDidAppear
+        let originalTheme = themeSetting == SettingsTableViewController.APP_THEME_ORIGINAL ?
+            UITableViewCellAccessoryType.checkmark : UITableViewCellAccessoryType.none
+        let darkTheme = themeSetting == SettingsTableViewController.APP_THEME_DARK ?
+            UITableViewCellAccessoryType.checkmark : UITableViewCellAccessoryType.none
+        self.tableView.cellForRow(at: IndexPath(row: 0, section: 1))!.accessoryType = originalTheme
+        settingsTableView.cellForRow(at: IndexPath(row: 1, section: 1))!.accessoryType = darkTheme
+    }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // One section in settings
-        return 1
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // 3 rows in the single section
-        return 3
+        if section == 0 {
+            return 3
+        } else if section == 1{
+            return 2
+        } else {
+            return 0
+        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 0 {
-            if !((tipSelectView.viewWithTag(uipickerId)?.isHidden)!) && lastSelectedTableRow! == indexPath {
-                tipSelectView.viewWithTag(uipickerId)?.isHidden = true
-                tableView.deselectRow(at: indexPath, animated: true)
-            } else {
-                tipSelectView.viewWithTag(uipickerId)?.isHidden = false
-                let currentDefaultPercentage = Int(tipPercentageDefaults[tableRowToDefaultKey[indexPath.row]!]! * 100) - 1
-                tipPercentagePicker.selectRow(currentDefaultPercentage, inComponent: indexPath.section, animated: true)
-                lastSelectedTableRow = indexPath
-            }
+        switch indexPath.section {
+        case 0:
+            defaultTipSectionSelected(didSelectRowAt: indexPath)
+        case 1:
+            themeSectionSelected(didSelectRowAt: indexPath)
+        default: break
         }
+    }
+    
+    func defaultTipSectionSelected(didSelectRowAt indexPath: IndexPath) {
+        if !((tipSelectView.viewWithTag(uipickerId)?.isHidden)!) && lastSelectedTableRow! == indexPath {
+            tipSelectView.viewWithTag(uipickerId)?.isHidden = true
+            tableView.deselectRow(at: indexPath, animated: true)
+        } else {
+            tipSelectView.viewWithTag(uipickerId)?.isHidden = false
+            let currentDefaultPercentage = Int(tipPercentageDefaults[tableRowToDefaultKey[indexPath.row]!]! * 100) - 1
+            tipPercentagePicker.selectRow(currentDefaultPercentage, inComponent: indexPath.section, animated: true)
+            lastSelectedTableRow = indexPath
+        }
+    }
+    
+    func themeSectionSelected(didSelectRowAt indexPath: IndexPath) {
+        if !(tipSelectView.viewWithTag(uipickerId)?.isHidden)! {
+            tipSelectView.viewWithTag(uipickerId)?.isHidden = true
+        }
+        
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

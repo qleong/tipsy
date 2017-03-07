@@ -83,31 +83,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "tipsy/SettingsTableViewController.swift"
-            timestampString = "509960560.05606"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
-            landmarkName = "tableView(_:didSelectRowAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "tipsy/SettingsTableViewController.swift"
-            timestampString = "509960560.05606"
+            timestampString = "510565293.888657"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
             landmarkName = "SettingsTableViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -119,11 +103,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "tipsy/SettingsTableViewController.swift"
-            timestampString = "509960560.05606"
+            timestampString = "510565293.888657"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
             landmarkName = "pickerView(_:didSelectRow:inComponent:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -151,11 +135,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "tipsy/SettingsTableViewController.swift"
-            timestampString = "509960560.05606"
+            timestampString = "510565293.888657"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
             landmarkName = "tableView(_:numberOfRowsInSection:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -195,7 +179,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "tipsy/SettingsTableViewController.swift"
@@ -208,29 +192,14 @@
             landmarkType = "3">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "tipsy.SettingsTableViewController.__deallocating_deinit"
-                  moduleName = "tipsy"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/quintinleong/Desktop/codepath/tipsy/tipsy/tipsy/SettingsTableViewController.swift"
-                  timestampString = "510480338.183217"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "4">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "tipsy.SettingsTableViewController.init (style : __C.UITableViewStyle) -&gt; tipsy.SettingsTableViewController"
                   moduleName = "tipsy"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/quintinleong/Desktop/codepath/tipsy/tipsy/tipsy/SettingsTableViewController.swift"
-                  timestampString = "510480338.184886"
+                  timestampString = "510562498.346565"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "13"
@@ -238,14 +207,14 @@
                   offsetFromSymbolStart = "31">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "tipsy.SettingsTableViewController.__allocating_init (style : __C.UITableViewStyle) -&gt; tipsy.SettingsTableViewController"
                   moduleName = "tipsy"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/quintinleong/Desktop/codepath/tipsy/tipsy/tipsy/SettingsTableViewController.swift"
-                  timestampString = "510480338.186634"
+                  timestampString = "510562498.349763"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
@@ -253,14 +222,14 @@
                   offsetFromSymbolStart = "4">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "tipsy.SettingsTableViewController.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; tipsy.SettingsTableViewController"
                   moduleName = "tipsy"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/quintinleong/Desktop/codepath/tipsy/tipsy/tipsy/SettingsTableViewController.swift"
-                  timestampString = "510480338.188631"
+                  timestampString = "510562498.35348"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "13"
@@ -268,14 +237,14 @@
                   offsetFromSymbolStart = "70">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "tipsy.SettingsTableViewController.__allocating_init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; tipsy.SettingsTableViewController"
                   moduleName = "tipsy"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/quintinleong/Desktop/codepath/tipsy/tipsy/tipsy/SettingsTableViewController.swift"
-                  timestampString = "510480338.191186"
+                  timestampString = "510562498.357123"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
@@ -283,14 +252,14 @@
                   offsetFromSymbolStart = "23">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "tipsy.SettingsTableViewController.__allocating_init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;tipsy.SettingsTableViewController&gt;"
                   moduleName = "tipsy"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/quintinleong/Desktop/codepath/tipsy/tipsy/tipsy/SettingsTableViewController.swift"
-                  timestampString = "510480338.193415"
+                  timestampString = "510562498.360553"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
@@ -298,14 +267,14 @@
                   offsetFromSymbolStart = "4">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "tipsy.SettingsTableViewController.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;tipsy.SettingsTableViewController&gt;"
                   moduleName = "tipsy"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/quintinleong/Desktop/codepath/tipsy/tipsy/tipsy/SettingsTableViewController.swift"
-                  timestampString = "510480338.195322"
+                  timestampString = "510562498.364316"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "13"
@@ -313,6 +282,38 @@
                   offsetFromSymbolStart = "31">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "tipsy/SettingsTableViewController.swift"
+            timestampString = "510565293.888657"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "loadThemeSettings()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "tipsy/SettingsTableViewController.swift"
+            timestampString = "510565293.888657"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
+            landmarkName = "checkThemeCell()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
