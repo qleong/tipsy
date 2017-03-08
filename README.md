@@ -6,7 +6,7 @@ This is a tip calculator application.
 
 * Calculate tip and total bill with subtotal input
 * Ability to change tip percentages in settings menu
-* Format tip and total fields with thousand comma seperator
+* Format tip and total fields with thousand comma separator
 * Input is first responder with keyboard visible
 * Settings for original and dark theme
 
