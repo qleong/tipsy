@@ -92,9 +92,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="billField" destination="dHh-lP-Wpu" id="0bY-Cw-87r"/>
+                        <outlet property="billLabel" destination="CNC-Wv-Bl8" id="2Qh-dF-mrq"/>
                         <outlet property="tipControl" destination="RmI-nW-SlQ" id="NBZ-aN-s3D"/>
-                        <outlet property="tipLabel" destination="Nz9-b3-KBT" id="zk4-WD-fKe"/>
-                        <outlet property="totalLabel" destination="tvS-wg-TNJ" id="eIG-kl-q27"/>
+                        <outlet property="tipField" destination="Nz9-b3-KBT" id="ERv-T2-EqZ"/>
+                        <outlet property="tipLabel" destination="inO-14-hpx" id="48q-ND-ZOQ"/>
+                        <outlet property="totalField" destination="tvS-wg-TNJ" id="E0J-5N-Gv1"/>
+                        <outlet property="totalLabel" destination="WwV-af-cYc" id="6Fx-8z-eBD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -187,7 +190,7 @@
                                         <rect key="frame" x="0.0" y="252" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gl8-an-KCw" id="ie9-li-vzZ">
-                                            <frame key="frameInset" width="375" height="43.5"/>
+                                            <frame key="frameInset" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Regular Theme" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4KP-sZ-aYV">

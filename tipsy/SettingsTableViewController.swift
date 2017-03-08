@@ -24,6 +24,8 @@ class SettingsTableViewController: UITableViewController, UIPickerViewDataSource
                                          SettingsTableViewController.DEFAULT_TWO_KEY: 0.2,
                                          SettingsTableViewController.DEFAULT_THREE_KEY: 0.25]
     private var themeSetting = SettingsTableViewController.APP_THEME_ORIGINAL
+    private var themeSettingMappings = [0: SettingsTableViewController.APP_THEME_ORIGINAL,
+                                        1: SettingsTableViewController.APP_THEME_DARK]
     static let DEFAULT_ONE_KEY = "default_percentage_one"
     static let DEFAULT_TWO_KEY = "default_percentage_two"
     static let DEFAULT_THREE_KEY = "default_percentage_three"
@@ -44,6 +46,10 @@ class SettingsTableViewController: UITableViewController, UIPickerViewDataSource
     
     override func viewDidAppear(_ animated: Bool) {
         checkThemeCell()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        syncUserDefaultValues()
     }
 
     override func didReceiveMemoryWarning() {
@@ -135,7 +141,9 @@ class SettingsTableViewController: UITableViewController, UIPickerViewDataSource
         if !(tipSelectView.viewWithTag(uipickerId)?.isHidden)! {
             tipSelectView.viewWithTag(uipickerId)?.isHidden = true
         }
-        
+        themeSetting = themeSettingMappings[indexPath.row]!
+        checkThemeCell()
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -153,13 +161,14 @@ class SettingsTableViewController: UITableViewController, UIPickerViewDataSource
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let indexPath = tableView.indexPathForSelectedRow![1]
         tipPercentageDefaults[tableRowToDefaultKey[indexPath]!] = Double(userTipPercentageOptions[row]) / 100.00
-        syncUserDefaultValues()
+//        syncUserDefaultValues()
     }
     
     func syncUserDefaultValues() {
         for (key, value) in tipPercentageDefaults {
             userSettings.set(value, forKey: key)
         }
+        userSettings.set(themeSetting, forKey: SettingsTableViewController.APP_THEME_KEY)
         userSettings.synchronize()
     }
     

@@ -10,9 +10,12 @@ import UIKit
 
 class ViewController: UIViewController, UITextFieldDelegate {
 
+    @IBOutlet weak var billLabel: UILabel!
     @IBOutlet weak var billField: UITextField!
     @IBOutlet weak var totalLabel: UILabel!
+    @IBOutlet weak var totalField: UILabel!
     @IBOutlet weak var tipLabel: UILabel!
+    @IBOutlet weak var tipField: UILabel!
     @IBOutlet weak var tipControl: UISegmentedControl!
     private let userSettings = UserDefaults.standard
     private var numberFormatter = NumberFormatter()
@@ -22,6 +25,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     private var tipPercentages = [SettingsTableViewController.DEFAULT_ONE_KEY: 0.18,
                                   SettingsTableViewController.DEFAULT_TWO_KEY: 0.2,
                                   SettingsTableViewController.DEFAULT_THREE_KEY: 0.25]
+    private var currentTheme = SettingsTableViewController.APP_THEME_ORIGINAL
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,14 +47,30 @@ class ViewController: UIViewController, UITextFieldDelegate {
             refreshTip()
         }
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        updateTheme()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
-    func setupNumberFormatter() {
-        
+    func updateTheme() {
+        let theme = userSettings.string(forKey: SettingsTableViewController.APP_THEME_KEY)
+        if theme == nil  || theme! == currentTheme {
+            return
+        }
+        currentTheme = theme!
+        let backgroundColor = currentTheme == SettingsTableViewController.APP_THEME_ORIGINAL ? UIColor.white : UIColor.black
+        let textColor = currentTheme == SettingsTableViewController.APP_THEME_ORIGINAL ? UIColor.black : UIColor.white
+        self.view.backgroundColor = backgroundColor
+        billLabel.textColor = textColor
+        tipLabel.textColor = textColor
+        tipField.textColor = textColor
+        totalLabel.textColor = textColor
+        totalField.textColor = textColor
     }
 
     func setupSegmentedControl() {
@@ -71,8 +91,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let tip = bill * tipPercentages[segmentToPercentageKey[tipControl.selectedSegmentIndex]!]!
         let total = bill + tip
             
-        tipLabel.text = String(format: "$%@", numberFormatter.string(from: NSNumber(value: tip))!)
-        totalLabel.text = String(format: "$%@", numberFormatter.string(from: NSNumber(value: total))!)
+        tipField.text = String(format: "$%@", numberFormatter.string(from: NSNumber(value: tip))!)
+        totalField.text = String(format: "$%@", numberFormatter.string(from: NSNumber(value: total))!)
     }
     
     @IBAction func onTap(_ sender: AnyObject) {
