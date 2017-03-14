@@ -26,6 +26,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
                                   SettingsTableViewController.DEFAULT_TWO_KEY: 0.2,
                                   SettingsTableViewController.DEFAULT_THREE_KEY: 0.25]
     private var currentTheme = SettingsTableViewController.APP_THEME_ORIGINAL
+    private static let SAVED_STATE_TIMEOUT = 600.0 // Value in seconds which to restore the input value of billField.
+    private static let SAVED_STATE_TIME = "saved_state_time"
+    private static let SAVED_STATE_VALUE = "saved_state_value"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +42,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
         // Retrieve segmented control values from user settings.
         setupSegmentedControl()
+        
+        // Restore intput state
+        loadInputState()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,10 +57,35 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func viewDidAppear(_ animated: Bool) {
         updateTheme()
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        saveInputState()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func saveInputState() {
+        if billField.hasText {
+            let later = NSDate.init(timeIntervalSinceNow: TimeInterval.abs(ViewController.SAVED_STATE_TIMEOUT))
+            let input = Double.init(billField.text!)!
+            userSettings.set(later, forKey: ViewController.SAVED_STATE_TIME)
+            userSettings.set(input, forKey: ViewController.SAVED_STATE_VALUE)
+            userSettings.synchronize()
+        }
+    }
+    
+    func loadInputState() {
+        let past = userSettings.object(forKey: ViewController.SAVED_STATE_TIME) as! Date
+        if userSettings.object(forKey: ViewController.SAVED_STATE_TIME) != nil
+            && NSDate.init().timeIntervalSince(past) < 0 {
+            // Restore the state here
+            let restoredValue = userSettings.double(forKey: ViewController.SAVED_STATE_VALUE)
+            let restoredInput = String(format: "%.2f", restoredValue)
+            billField.text = String.init(restoredInput)
+        }
     }
 
     func updateTheme() {
